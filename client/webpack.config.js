@@ -17,40 +17,52 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
-        filename: 'index.html',
-        chunks: ['main'],
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/install.html',
-        filename: 'install.html',
-        chunks: ['install'],
+        template: 'index.html',
+        filename: 'index.html'
       }),
       new WebpackPwaManifest({
-        name: 'Your App Name',
-        short_name: 'App Name',
-        description: 'Your app description',
-        background_color: '#ffffff',
-        theme_color: '#000000',
-        start_url: '/',
+        name: 'Just Another Text Editor',
+        short_name: 'JATE',
+        description: 'Note taking tool',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        display: 'standalone',
+        orientation: 'portrait',
+        start_url: './',
+        publicPath: './',
+        fingerprints: false,
         icons: [
           {
-            src: path.resolve('src/assets/icon.png'),
+            src: path.resolve(__dirname, 'src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
         ],
       }),
       new InjectManifest({
-        swSrc: './src/js/sw.js',
-        swDest: 'sw.js',
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
       }),
     ],
 
     module: {
       rules: [
-        
+        {
+          test: /\.css$/i,
+          use: ['style-loader', 'css-loader'],
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
+          },
+        },
       ],
-    },
+    },  
   };
 };
