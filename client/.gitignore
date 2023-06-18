@@ -68,3 +68,4 @@ yarn.lock
 .vscode
 *.xslx
 node_modules
+npm-debug.log
