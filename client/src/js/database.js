@@ -8,7 +8,6 @@ const initdb = async () =>
         return;
       }
       db.createObjectStore('jate', { keyPath: 'id', autoIncrement: true });
-      console.log('JATE database created!');
     },
   });
 
@@ -30,7 +29,7 @@ export const getDb = async () => {
     const db = await openDB('jate', 1);
     const transaction = db.transaction('jate', 'readonly');
     const store = transaction.objectStore('jate');
-    const content = await store.getAll();
+    const content = await store.get(1);
     await transaction.done;
     console.log("Content recovered from database!!");
     return content;
