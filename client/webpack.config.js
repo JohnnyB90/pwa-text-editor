@@ -10,6 +10,7 @@ module.exports = () => {
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
+      
     },
     output: {
       filename: '[name].bundle.js',
@@ -17,7 +18,7 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: 'index.html',
+        template: './index.html',
         filename: 'index.html'
       }),
       new WebpackPwaManifest({
