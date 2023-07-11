@@ -23,7 +23,6 @@ Jate Text Editor
 
 A tool great for keeping notes, or making lists
 
-
 ## Installation
 
 No installation is required, but it can be installed from a browser and used offline.
